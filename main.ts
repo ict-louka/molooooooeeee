@@ -32,22 +32,21 @@ input.onGesture(Gesture.Shake, function () {
         }
         let knopingeduwd=0;
         startTijd = input.runningTime() ;
-        while (knopingeduwd==0) {
+        while ((knopingeduwd==0 ) && spelbezig) {
             if (input.buttonIsPressed(Button.A)) {knopingeduwd=1;}
             if (input.buttonIsPressed(Button.B)) {knopingeduwd=2;
+            if (input.runningTime() - startTijd > 2000) {
+                spelbezig = false;
             }
+        }
         }
         if (mol==knopingeduwd)      {
             music.playTone(Note.A, music.beat())
-            
         }
         else {
             music.playTone(Note.C, music.beat())
             spelbezig=false
         }	
-        if (input.runningTime() - startTijd > 5000) {
-            game.gameOver()
-        }
     }  
     basic.showString("Game over!")
 })
