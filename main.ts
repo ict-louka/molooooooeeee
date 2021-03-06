@@ -9,6 +9,8 @@ input.onGesture(Gesture.Shake, function () {
     basic.showString("Go!")
     basic.pause(100)
     let spelbezig=true
+    let startTijd = 0
+
     while (spelbezig==true){
         let mol = Math.randomRange(1, 2)
         if (mol==1) {
@@ -29,6 +31,7 @@ input.onGesture(Gesture.Shake, function () {
                 `)
         }
         let knopingeduwd=0;
+        startTijd = input.runningTime() ;
         while (knopingeduwd==0) {
             if (input.buttonIsPressed(Button.A)) {knopingeduwd=1;}
             if (input.buttonIsPressed(Button.B)) {knopingeduwd=2;
@@ -36,11 +39,15 @@ input.onGesture(Gesture.Shake, function () {
         }
         if (mol==knopingeduwd)      {
             music.playTone(Note.A, music.beat())
+            
         }
         else {
             music.playTone(Note.C, music.beat())
-            spelbezig=false}	
+            spelbezig=false
+        }	
+        if (input.runningTime() - startTijd > 5000) {
+            game.gameOver()
+        }
     }  
     basic.showString("Game over!")
 })
-
