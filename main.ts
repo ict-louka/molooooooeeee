@@ -34,11 +34,11 @@ input.onGesture(Gesture.Shake, function () {
         startTijd = input.runningTime() ;
         while ((knopingeduwd==0 ) && spelbezig) {
             if (input.buttonIsPressed(Button.A)) {knopingeduwd=1;}
-            if (input.buttonIsPressed(Button.B)) {knopingeduwd=2;
+            if (input.buttonIsPressed(Button.B)) {knopingeduwd=2;}
             if (input.runningTime() - startTijd > 2000) {
                 spelbezig = false;
-            }
-        }
+                music.playTone(Note.F, music.beat())
+            } 
         }
         if (mol==knopingeduwd)      {
             music.playTone(Note.A, music.beat())
